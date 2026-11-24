@@ -1,0 +1,8 @@
+{
+  "name": "The Compass",
+  "description": "The Compass is a Nigerian media company combining technology and culture to redefine storytelling, amplify African culture, develop talent, and deliver cultural consultancy.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
