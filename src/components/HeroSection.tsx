@@ -15,7 +15,7 @@ export function HeroSection({ onStartProject }: HeroSectionProps) {
           <div className="flex flex-col justify-between lg:col-span-5">
             <div>
               <p className="text-sm font-medium text-[#A3A8B2]">
-                <span>Lagos, Nigeria</span>
+                <span>Africa</span>
                 <span aria-hidden="true" className="mx-2 text-white/30">
                   ·
                 </span>

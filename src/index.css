@@ -40,6 +40,29 @@
   font-variant-numeric: tabular-nums;
 }
 
+@keyframes skip-link-border-reveal {
+  0% {
+    box-shadow: 0 0 0 0 rgba(229, 160, 36, 0.7), 0 8px 24px rgba(0, 0, 0, 0.45);
+    transform: translateY(-4px);
+    opacity: 0.85;
+  }
+  65% {
+    box-shadow: 0 0 0 5px rgba(229, 160, 36, 0.22), 0 10px 28px rgba(0, 0, 0, 0.5);
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    box-shadow: 0 0 0 3px rgba(229, 160, 36, 0.35), 0 10px 28px rgba(0, 0, 0, 0.5);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  animation: skip-link-border-reveal 260ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

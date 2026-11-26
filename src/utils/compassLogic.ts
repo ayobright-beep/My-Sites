@@ -114,3 +114,19 @@ export function createInquirySubmission(
     submittedAt: now.toISOString(),
   };
 }
+
+export function calculateScrollProgress(
+  scrollTop: number,
+  scrollHeight: number,
+  clientHeight: number
+): number {
+  const maxScroll = scrollHeight - clientHeight;
+  if (maxScroll <= 0) {
+    return 0;
+  }
+  const ratio = scrollTop / maxScroll;
+  if (ratio <= 0) return 0;
+  if (ratio >= 1) return 1;
+  return ratio;
+}
+

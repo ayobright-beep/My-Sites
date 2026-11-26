@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import { CornerDownRight } from 'lucide-react';
 import type { CaseStudy, InquiryTopic } from './data/compassData';
+import { ScrollProgressBar } from './components/ScrollProgressBar';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { MissionCapabilitiesSection } from './components/MissionCapabilitiesSection';
@@ -33,11 +35,14 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#0B0C0E] text-[#F4F3EF]">
+      <ScrollProgressBar />
+
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-md focus:bg-[#E5A024] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-[#0B0C0E]"
+        className="skip-link sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:inline-flex focus:items-center focus:gap-2 focus:rounded-md focus:border focus:border-[#F4F3EF]/85 focus:bg-[#E5A024] focus:px-4 focus:py-2.5 focus:text-sm focus:font-semibold focus:text-[#0B0C0E] focus:outline-none"
       >
-        Skip to main content
+        <CornerDownRight className="h-4 w-4 shrink-0" aria-hidden="true" />
+        <span>Skip to main content</span>
       </a>
 
       <Navbar onStartProject={() => scrollToContact('', '')} />

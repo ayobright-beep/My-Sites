@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { CASE_STUDIES, MISSION_PILLARS } from '../data/compassData';
 import {
+  calculateScrollProgress,
   createInquirySubmission,
   filterCaseStudies,
   getCapabilityById,
@@ -69,4 +70,13 @@ test('validateInquiryForm accepts complete valid form and creates deterministic 
   assert.equal(submission.name, 'Ayo Adewale');
   assert.equal(submission.topic, 'Strategic Consultancy');
   assert.equal(submission.submittedAt, '2026-11-23T12:00:00.000Z');
+});
+
+test('calculateScrollProgress tracks scroll ratio and clamps boundaries safely', () => {
+  assert.equal(calculateScrollProgress(0, 3000, 1000), 0);
+  assert.equal(calculateScrollProgress(1000, 3000, 1000), 0.5);
+  assert.equal(calculateScrollProgress(2000, 3000, 1000), 1);
+  assert.equal(calculateScrollProgress(-50, 3000, 1000), 0);
+  assert.equal(calculateScrollProgress(2500, 3000, 1000), 1);
+  assert.equal(calculateScrollProgress(0, 800, 1000), 0);
 });
