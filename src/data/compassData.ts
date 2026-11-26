@@ -1,5 +1,7 @@
 export type WorkCategory = 'All' | 'Storytelling' | 'Culture & Tech' | 'Talent' | 'Consultancy';
 
+export type NewsCategory = 'All' | 'Culture & Tech' | 'Storytelling' | 'Talent' | 'Consultancy';
+
 export type InquiryTopic =
   | 'Redefining Storytelling'
   | 'Amplifying African Culture'
@@ -12,6 +14,23 @@ export interface ProofMetric {
   value: string;
   label: string;
   context: string;
+}
+
+export interface NewsArticle {
+  id: string;
+  title: string;
+  category: Exclude<NewsCategory, 'All'>;
+  date: string;
+  readTime: string;
+  location: string;
+  author: string;
+  authorRole: string;
+  excerpt: string;
+  body: string[];
+  image?: string;
+  imageAlt?: string;
+  featured?: boolean;
+  relatedTopic: InquiryTopic;
 }
 
 export interface MissionPillar {
@@ -64,6 +83,11 @@ export interface ConsultancyModel {
   description: string;
   deliverable: string;
 }
+
+export const COMPASS_LOGO = {
+  src: '/assets/aistudio/The_Compass_design_96eb0232.png',
+  alt: 'The Compass emblem',
+};
 
 export const HERO_IMAGE = {
   src: '/src/assets/images/hero_lagos_studio_1795476266782.jpg',
@@ -418,3 +442,92 @@ export const BUDGET_RANGES = [
   '$75,000 – $200,000 (Flagship Experience / Retainer)',
   '$200,000+ (Multi-Market / Original IP)',
 ];
+
+export const NEWS_CATEGORIES: NewsCategory[] = [
+  'All',
+  'Culture & Tech',
+  'Storytelling',
+  'Talent',
+  'Consultancy',
+];
+
+export const NEWS_ARTICLES: NewsArticle[] = [
+  {
+    id: 'eko-spatial-sound-lab-2026',
+    title: 'The Compass Opens Spatial Sound & Real-Time Visuals Lab in Victoria Island',
+    category: 'Culture & Tech',
+    date: 'November 18, 2026',
+    readTime: '4 min read',
+    location: 'Lagos',
+    author: 'Damilola Fashola',
+    authorRole: 'Managing Editor, The Compass',
+    featured: true,
+    image: '/src/assets/images/work_digital_pavilion_1795476310410.jpg',
+    imageAlt: 'Illuminated brutalist architectural pavilion in Lagos showcasing golden woven light projections at dusk',
+    excerpt:
+      'Our new Victoria Island R&D facility pairs Dolby-calibrated spatial mixing with real-time projection rigs—giving Nigerian filmmakers, musicians, and creative technologists shared access to next-generation production infrastructure.',
+    body: [
+      'After eighteen months of architectural prototyping and acoustic engineering, The Compass has officially commissioned its Spatial Sound & Real-Time Visuals Lab in Victoria Island, Lagos. Built to serve both our internal originals unit and independent West African creators, the facility brings cinema-grade spatial mixing and real-time GPU stage visualization under one roof.',
+      'Historically, Nigerian directors and touring musicians seeking spatial audio mastering or interactive stage engineering had to ship masters and technical riders to studios in London or Los Angeles—introducing steep currency costs and separating technical craft from its cultural source. The new lab closes that gap directly in Lagos.',
+      'Starting in Q1 2027, the lab will host quarterly six-week residencies pairing two creative technologists with two filmmakers or composers to prototype interactive documentaries, projection-mapped performances, and low-bandwidth WebAR cultural archives built for mobile-first African audiences.',
+    ],
+    relatedTopic: 'Shaping Cultural Futures',
+  },
+  {
+    id: 'african-cinema-new-grammar',
+    title: 'Why West African Documentary Cinema Is Adopting Interactive Web Chapters',
+    category: 'Storytelling',
+    date: 'November 9, 2026',
+    readTime: '5 min read',
+    location: 'Lagos · Accra',
+    author: 'Tunde Balogun',
+    authorRole: 'Represented Director',
+    image: '/src/assets/images/work_african_cinema_1795476268992.jpg',
+    imageAlt: 'Nigerian film director framing a dusk shot on an anamorphic cinema camera rig overlooking Lagos',
+    excerpt:
+      'Following the 14.2M-stream run of Lagos Soundscapes, regional producers are pairing theatrical documentary cuts with browser-native audio stems and archival essays.',
+    body: [
+      'A quiet structural shift is underway across independent West African documentary studios. Rather than treating a film premiere as the finish line, production teams are designing multi-layered digital companions that allow viewers to explore archival interviews, isolated field recordings, and architectural maps long after festival screenings conclude.',
+      'During the rollout of Lagos Soundscapes, nearly 38% of online viewers spent more than eleven minutes interacting with the browser-based percussion stems—far exceeding standard social clip retention. Audiences were not merely watching Lagos; they were studying the sonic craft behind it.',
+      'For cultural storytellers, this hybrid format unlocks sustainable direct-to-audience licensing with universities, museums, and international broadcasters while keeping editorial nuance intact.',
+    ],
+    relatedTopic: 'Redefining Storytelling',
+  },
+  {
+    id: 'rights-first-talent-compact',
+    title: 'The Compass Announces 2027 Rights-First Representation Compact for Emerging Directors',
+    category: 'Talent',
+    date: 'October 28, 2026',
+    readTime: '3 min read',
+    location: 'Lagos · London',
+    author: 'Ngozi Eze',
+    authorRole: 'Head of Talent Development',
+    excerpt:
+      'Four new interdisciplinary creators join our managed slate under a transparent co-development model that guarantees 100% creator master ownership.',
+    body: [
+      'The Compass Talent Division has expanded its 2027 roster with four new filmmakers, sonic architects, and spatial designers working between Lagos, Abuja, Accra, and London. Each signing is anchored by our Rights-First Representation Compact.',
+      'Under the compact, The Compass provides early development capital, international commercial representation, and global sync administration while ensuring creators retain full ownership of their original masters and intellectual property.',
+      'Applications for our mid-2027 studio mentorship cohort open this December, with priority given to directors and composers working across documentary film, spatial audio, and interactive media.',
+    ],
+    relatedTopic: 'Talent Management & Development',
+  },
+  {
+    id: 'youth-culture-index-findings',
+    title: 'Inside the 2026 West Africa Youth Culture Index: How Peer Collectives Outperform Legacy Ad Flights',
+    category: 'Consultancy',
+    date: 'October 14, 2026',
+    readTime: '6 min read',
+    location: 'Lagos · Abuja · Accra',
+    author: 'Chidi Obi',
+    authorRole: 'Principal, Cultural Consultancy',
+    excerpt:
+      'Key takeaways from 140 field interviews across Lagos, Abuja, and Accra revealing why community-backed cultural platforms drive 38% stronger brand recall.',
+    body: [
+      'Our latest cultural intelligence report surveyed 140 studio founders, campus collectives, radio hosts, and independent designers across three major West African metros. One finding stood above every metric: urban audiences aged 18 to 30 increasingly tune out top-down international campaign templates.',
+      'Brands that achieved measurable commercial lift in 2026 invested directly in durable cultural infrastructure—funding listening spaces, archival print editions, and local creator showcases rather than transient billboard blitzes.',
+      'Executive briefings for the full 2026 West Africa Youth Culture Index are now open for regional leadership teams and international partners planning 2027 market launches.',
+    ],
+    relatedTopic: 'Strategic Consultancy',
+  },
+];
+

@@ -130,3 +130,24 @@ export function calculateScrollProgress(
   return ratio;
 }
 
+export function filterNewsArticles<T extends { category: string }>(
+  articles: T[],
+  category: string
+): T[] {
+  if (category === 'All') {
+    return articles;
+  }
+  return articles.filter((article) => article.category === category);
+}
+
+export type AppPage = 'home' | 'mission';
+
+export function resolvePageFromPathname(pathname: string): AppPage {
+  const normalized = pathname.replace(/\/+$/, '') || '/';
+  if (normalized === '/mission' || normalized === '/mission-and-practices') {
+    return 'mission';
+  }
+  return 'home';
+}
+
+

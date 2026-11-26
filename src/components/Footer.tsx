@@ -1,14 +1,47 @@
-export function Footer() {
+import type { MouseEvent } from 'react';
+import { CompassLogoMark } from './CompassLogoMark';
+
+interface FooterProps {
+  onNavigateHome: () => void;
+  onNavigateMission: () => void;
+  onNavigateSection: (sectionId: string) => void;
+}
+
+export function Footer({
+  onNavigateHome,
+  onNavigateMission,
+  onNavigateSection,
+}: FooterProps) {
+  const handleHome = (event: MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    onNavigateHome();
+  };
+
+  const handleMission = (event: MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    onNavigateMission();
+  };
+
+  const handleSection = (
+    event: MouseEvent<HTMLAnchorElement>,
+    sectionId: string
+  ) => {
+    event.preventDefault();
+    onNavigateSection(sectionId);
+  };
+
   return (
     <footer className="bg-[#0B0C0E] py-14">
       <div className="mx-auto max-w-[1280px] px-6 lg:px-10">
         <div className="grid grid-cols-1 gap-10 border-b border-white/[0.08] pb-12 md:grid-cols-12">
           <div className="md:col-span-5">
             <a
-              href="#top"
-              className="font-display text-xl font-bold tracking-tight text-[#F4F3EF]"
+              href="/"
+              onClick={handleHome}
+              className="inline-flex items-center gap-2.5 font-display text-xl font-bold tracking-tight text-[#F4F3EF] transition-colors hover:text-[#E5A024]"
             >
-              The Compass
+              <CompassLogoMark size="sm" />
+              <span>The Compass</span>
             </a>
             <p className="mt-3 max-w-sm text-sm leading-relaxed text-[#A3A8B2]">
               A Nigerian media company combining technology and culture to redefine storytelling, amplify African culture, develop talent, and advise ambitious partners.
@@ -21,32 +54,56 @@ export function Footer() {
             </h2>
             <ul className="mt-3 grid grid-cols-2 gap-y-2.5 text-sm text-[#A3A8B2]">
               <li>
-                <a href="#mission" className="transition-colors hover:text-[#F4F3EF]">
-                  Mission
+                <a
+                  href="#news"
+                  onClick={(e) => handleSection(e, 'news')}
+                  className="transition-colors hover:text-[#F4F3EF]"
+                >
+                  News &amp; Dispatches
                 </a>
               </li>
               <li>
-                <a href="#capabilities" className="transition-colors hover:text-[#F4F3EF]">
-                  Capabilities
+                <a
+                  href="/mission"
+                  onClick={handleMission}
+                  className="transition-colors hover:text-[#F4F3EF]"
+                >
+                  Mission &amp; Practices
                 </a>
               </li>
               <li>
-                <a href="#work" className="transition-colors hover:text-[#F4F3EF]">
+                <a
+                  href="#work"
+                  onClick={(e) => handleSection(e, 'work')}
+                  className="transition-colors hover:text-[#F4F3EF]"
+                >
                   Selected Work
                 </a>
               </li>
               <li>
-                <a href="#talent" className="transition-colors hover:text-[#F4F3EF]">
+                <a
+                  href="#talent"
+                  onClick={(e) => handleSection(e, 'talent')}
+                  className="transition-colors hover:text-[#F4F3EF]"
+                >
                   Talent Roster
                 </a>
               </li>
               <li>
-                <a href="#consultancy" className="transition-colors hover:text-[#F4F3EF]">
+                <a
+                  href="#consultancy"
+                  onClick={(e) => handleSection(e, 'consultancy')}
+                  className="transition-colors hover:text-[#F4F3EF]"
+                >
                   Consultancy
                 </a>
               </li>
               <li>
-                <a href="#contact" className="transition-colors hover:text-[#F4F3EF]">
+                <a
+                  href="#contact"
+                  onClick={(e) => handleSection(e, 'contact')}
+                  className="transition-colors hover:text-[#F4F3EF]"
+                >
                   Start a Project
                 </a>
               </li>

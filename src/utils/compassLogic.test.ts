@@ -1,11 +1,13 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { CASE_STUDIES, MISSION_PILLARS } from '../data/compassData';
+import { CASE_STUDIES, MISSION_PILLARS, NEWS_ARTICLES } from '../data/compassData';
 import {
   calculateScrollProgress,
   createInquirySubmission,
   filterCaseStudies,
+  filterNewsArticles,
   getCapabilityById,
+  resolvePageFromPathname,
   validateInquiryForm,
   type InquiryFormValues,
 } from './compassLogic';
@@ -79,4 +81,18 @@ test('calculateScrollProgress tracks scroll ratio and clamps boundaries safely',
   assert.equal(calculateScrollProgress(-50, 3000, 1000), 0);
   assert.equal(calculateScrollProgress(2500, 3000, 1000), 1);
   assert.equal(calculateScrollProgress(0, 800, 1000), 0);
+});
+
+test('filterNewsArticles filters editorial articles cleanly by category', () => {
+  assert.equal(filterNewsArticles(NEWS_ARTICLES, 'All').length, NEWS_ARTICLES.length);
+  const techNews = filterNewsArticles(NEWS_ARTICLES, 'Culture & Tech');
+  assert.ok(techNews.length >= 1);
+  assert.ok(techNews.every((item) => item.category === 'Culture & Tech'));
+});
+
+test('resolvePageFromPathname maps root and mission routes accurately', () => {
+  assert.equal(resolvePageFromPathname('/'), 'home');
+  assert.equal(resolvePageFromPathname('/mission'), 'mission');
+  assert.equal(resolvePageFromPathname('/mission/'), 'mission');
+  assert.equal(resolvePageFromPathname('/unknown'), 'home');
 });
